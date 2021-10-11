@@ -1,4 +1,4 @@
-Review Exercise 1 about one hour - until 3:30 9inc tea break
+Review Exercise 1 about one hour - until 3:30
 ================= see https://pastebin.com/aeVbZbPb or https://github.com/onionmccabbage/further_adv_py_Oct_2021
 Imagine some critical events that may happen, and which more than one subsystem needs to respond to
 For example:
