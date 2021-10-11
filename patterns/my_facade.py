@@ -51,7 +51,8 @@ class You(): # you can be the client of this facade
         print('Lets contact the manager') # here we call the facade
         m = Manager()
         m.arrange()
-    def __del__(self):
+    # del will be called in all classic Python flavours but carful with bundles e.g. Anaconda
+    def __del__(self): 
         print('all done')
 
 if __name__ == '__main__':
