@@ -10,21 +10,21 @@ class MyWorker(): # NB this class does NOT inherit from Thread...
         self.rlock = threading.RLock() # a re-entrant lock
     def modifyA(self):
         with self.rlock: # using 'with' will automatically release the lock when done
-            print('RLock acquired {}, modifying A'.format( self.rlock.__is_owned() ))
+            print('RLock acquired {}, modifying A'.format( self.rlock._is_owned() ))
             # take a look at the RLock itself
             print('{}'.format(self.rlock))
             self.a += 1
             time.sleep(2)
     def modifyB(self):
         with self.rlock: # using 'with' will automatically release the lock when done
-            print('RLock acquired {}, modifying B'.format( self.rlock.__is_owned() ))
+            print('RLock acquired {}, modifying B'.format( self.rlock._is_owned() ))
             # take a look at the RLock itself
             print('{}'.format(self.rlock))
             self.b -= 1
             time.sleep(2)
     def modifyBoth(self):
         with self.rlock: # using 'with' will automatically release the lock when done
-            print('RLock acquired {}, modifying A and B'.format( self.rlock.__is_owned() ))
+            print('RLock acquired {}, modifying A and B'.format( self.rlock._is_owned() ))
             # take a look at the RLock itself
             self.modifyA()
             print('{}'.format(self.rlock))
@@ -34,5 +34,6 @@ class MyWorker(): # NB this class does NOT inherit from Thread...
 
 if __name__ == '__main__':
     worker = MyWorker()
-    worker.modifyBoth()
     worker.modifyA()
+    worker.modifyB()
+    worker.modifyBoth()
