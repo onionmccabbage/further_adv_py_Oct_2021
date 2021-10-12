@@ -28,11 +28,13 @@ def make_thread_safe(cls, methodnames, lockfactory):
         setattr(cls, methodname, newmethod) # repalce the old methods with these new lockable versions
     return cls # has a new init and new version of every method
 
-
 @lock_class(['add', 'remove'], Lock) # Lock is a lock factory
 class DecoratorLockSet(set): # we extend the 'set' data-type using our decorator
     # the 'add' and 'remove' methods of the 'set' have now been made thread-safe with locks
-    pass
+    # we can lock specific methods like this
+    @lock_method
+    def methodToLock(self):
+        print('this method will be explicitly locked (and therefore thread safe)')
 
 if __name__ == '__main__':
     my_set = (4,3,2)
@@ -40,3 +42,5 @@ if __name__ == '__main__':
     # is it locked?
     print(my_inst.add.__is_locked) # True
     print(my_inst.remove.__is_locked) # True
+    print(my_inst.methodToLock.__is_locked) # True
+    
